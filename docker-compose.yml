@@ -2,6 +2,7 @@ services:
     jellyfin:
         image: lscr.io/linuxserver/jellyfin:latest
         container_name: jellyfin
+        network_mode: host
         environment:
             - PUID=1000
             - PGID=1000
@@ -10,8 +11,6 @@ services:
             - ~/nas-data/jellyfin/config:/config
             - ~/nas-data/jellyfin/cache:/cache
             - /mnt/HDD2TB:/data/media
-        ports:
-            - 8096:8096
         restart: unless-stopped
 
     qbittorrent:
@@ -32,14 +31,15 @@ services:
             - 6881:6881/udp
         restart: unless-stopped
 
-    homarr:
-        image: ghcr.io/ajnart/homarr:latest
-        container_name: homarr
+    homer:
+        image: b4bz/homer:latest
+        container_name: homer
         environment:
+            - PUID=1000
+            - PGID=1000
             - TZ=Asia/Bangkok
         volumes:
-            - ~/nas-data/homarr/configs:/app/data/configs
-            - ~/nas-data/homarr/icons:/app/public/icons
+            - ~/nas-data/homer:/www/assets
         ports:
-            - 7575:7575
+            - 80:8080
         restart: unless-stopped
