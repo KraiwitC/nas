@@ -11,6 +11,7 @@ services:
             - ~/nas-data/jellyfin/config:/config
             - ~/nas-data/jellyfin/cache:/cache
             - /mnt/HDD2TB:/data/media
+            - /srv/share:/data/SSD256
         restart: unless-stopped
 
     qbittorrent:
