@@ -26,6 +26,7 @@ services:
         volumes:
             - ~/nas-data/qbittorrent/config:/config
             - /mnt/HDD2TB/Movies:/downloads-movie
+            - /srv/share/Downloads:/downloads
         ports:
             - 8080:8080
             - 6881:6881
